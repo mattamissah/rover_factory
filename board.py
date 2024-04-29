@@ -1,4 +1,4 @@
-import os, sys, time
+import time
 import RPi.GPIO as GPIO
 from smbus2 import SMBus, i2c_msg
 from rpi_ws281x import PixelStrip
@@ -22,7 +22,7 @@ GPIO.setmode(GPIO.BOARD)
 
 def setMotor(index, speed):
     if index < 1 or index > 4:
-        raise AttributeError(f"Ivalid motor number: {index}")
+        raise AttributeError(f"Invalid motor number: {index}")
     if index == 2 or index == 4:
         speed = speed
     else:
@@ -47,7 +47,7 @@ def setMotor(index, speed):
 
 def getMotor(index):
     if index < 1 or index > 4:
-        raise AttributeError(f"Ivalid motor number: {index}")
+        raise AttributeError(f"Invalid motor number: {index}")
     
     index -= 1
     return motor_speeds[index]
@@ -75,7 +75,6 @@ def getBattery():
             ret = int.from_bytes(bytes(list(read)), "little")
    
     return ret
-
 
 
 if __name__ == "__main__":
